@@ -1,2 +1,4 @@
-package same.code.evote.dto;public class VotezDto {
+package same.code.evote.dto;
+
+public class VotezDto {
 }

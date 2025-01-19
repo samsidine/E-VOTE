@@ -1,2 +1,4 @@
-package same.code.evote.service;public interface IcandidatService {
+package same.code.evote.service;
+
+public interface IcandidatService {
 }

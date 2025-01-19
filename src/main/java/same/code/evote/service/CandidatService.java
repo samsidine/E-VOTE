@@ -1,4 +1,9 @@
 package same.code.evote.service;
 
-public class IcandidatService {
+import jakarta.transaction.Transactional;
+import org.springframework.stereotype.Service;
+
+@Service
+@Transactional(rollbackOn = {Throwable.class})
+public class CandidatService implements IcandidatService{
 }

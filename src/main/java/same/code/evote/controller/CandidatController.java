@@ -1,2 +1,4 @@
-package same.code.evote.controller;public class CandidatController {
+package same.code.evote.controller;
+
+public class CandidatController {
 }
