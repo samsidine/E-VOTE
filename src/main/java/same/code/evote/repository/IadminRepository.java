@@ -1,9 +1,8 @@
 package same.code.evote.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
-import same.code.evote.entity.AdminEntity;
+import same.code.evote.entity.UserEntity;
 
-public interface IadminRepository extends JpaRepository<AdminEntity , Long> {
-    AdminEntity findByEmail (String email);
+public interface IadminRepository extends JpaRepository<UserEntity, Long> {
+    UserEntity findByEmail (String email);
 }

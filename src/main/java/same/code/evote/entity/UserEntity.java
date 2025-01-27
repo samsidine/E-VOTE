@@ -14,7 +14,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @Getter
 @Setter
-public class AdminEntity {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,6 +36,8 @@ public class AdminEntity {
     private int numElecteur;
     @Column(name="TELLEPHONE")
     private String tel;
-    @Column(name="MOTS_PASSE")
+    @Column(name="MOTS_PASSE ")
     private String motDePasse;
+
+
 }

@@ -1,7 +1,6 @@
 package same.code.evote.service;
 
 import jakarta.transaction.Transactional;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import same.code.evote.dto.ElecteurDto;
 import same.code.evote.entity.ElecteurEntity;
@@ -15,11 +14,15 @@ import java.util.stream.Collectors;
 @Transactional(rollbackOn = {Throwable.class})
 public class ElecteurService implements IelecteurService{
 
-    @Autowired
+
     IelecteurRepository ielecteurRepository;
 
-    @Autowired
     ElecteurMapper electeurMapper;
+
+    public ElecteurService(IelecteurRepository ielecteurRepository, ElecteurMapper electeurMapper) {
+        this.ielecteurRepository = ielecteurRepository;
+        this.electeurMapper = electeurMapper;
+    }
 
     @Override
     public ElecteurDto save(ElecteurDto electeurDto) {
@@ -30,25 +33,21 @@ public class ElecteurService implements IelecteurService{
 
         ElecteurEntity electeurEntity = electeurMapper.getEntity(electeurDto);
         ElecteurEntity electeur = ielecteurRepository.save(electeurEntity);
-        ElecteurDto dto = electeurMapper.getDto(electeur);
-        return null;
+        return electeurMapper.getDto(electeur);
 
     }
 
     @Override
     public List<ElecteurDto> electeurs() {
         List<ElecteurEntity> electeurEntities  = ielecteurRepository.findAll();
-        List<ElecteurDto> electeurDtos = electeurEntities.stream().map(electeurEntity -> electeurMapper.getDto(electeurEntity)).collect(Collectors.toList());
-
-        return electeurDtos;
+        return electeurEntities.stream().map(electeurEntity -> electeurMapper.getDto(electeurEntity)).collect(Collectors.toList());
 
     }
 
     @Override
     public ElecteurDto findById(long id) {
         ElecteurEntity electeurEntity = ielecteurRepository.getReferenceById(id);
-        ElecteurDto electeurDto = electeurMapper.getDto(electeurEntity);
-        return electeurDto ;
+        return electeurMapper.getDto(electeurEntity);
     }
 
     @Override
@@ -59,7 +58,10 @@ public class ElecteurService implements IelecteurService{
 
     @Override
     public void deleteById(long id) {
-        ielecteurRepository.deleteById(id);
+        if (id>0){
+            ielecteurRepository.deleteById(id);
+        }
+
     }
 
     @Override
